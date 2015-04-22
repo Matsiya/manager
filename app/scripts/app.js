@@ -33,9 +33,13 @@ angular
         templateUrl: 'views/partners.html',
         controller: 'PartnersCtrl'
       })
-      .when('/partner', {
+      .when('/partner/:id', {
         templateUrl: 'views/partner.html',
         controller: 'PartnerCtrl'
+      })
+      .when('/addPartner', {
+        templateUrl: 'views/addPartner.html',
+        controller: 'addPartnerCtrl'
       })
       .otherwise({
         redirectTo: '/'

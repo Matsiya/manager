@@ -1,4 +1,3 @@
-
 'use strict';
 /**
  * @ngdoc function
@@ -8,11 +7,11 @@
  * Controller of the managerApp
  */
 var app = angular.module('managerApp');
-app.controller('PartnerCtrl', function($scope, editPartnerService,$location) {
-    editPartnerService.getCategory().then(function(data) {
+app.controller('addPartnerCtrl', function($scope, partnerService,$location) {
+    partnerService.getCategory().then(function(data) {
         $scope.category = data.rows;
     });
-    $scope.updatePartner = function(){
+    $scope.addPartner = function(){
         partnerService.savePartner(this.partner).then(function(data) {
                 $location.path('/partners');
             });
@@ -23,7 +22,7 @@ app.controller('PartnerCtrl', function($scope, editPartnerService,$location) {
         'Karma'
     ];
 });
-app.service('editPartnerService', function($http, $q) {
+app.service('partnerService', function($http, $q) {
     return {
         getCategory: function() {
             var deferred = $q.defer();
@@ -38,7 +37,7 @@ app.service('editPartnerService', function($http, $q) {
             });
             return deferred.promise;
         },
-        updatePartner: function(partner) {
+        savePartner: function(partner) {
             
             partner._id= "partner_"+Date.now();
             var deferred = $q.defer();
