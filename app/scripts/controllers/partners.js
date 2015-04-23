@@ -35,7 +35,7 @@ app.service('getpartnerService', function($http, $q) {
     return {
         getPartners: function() {
             var deferred = $q.defer();
-            $http.get('http://188.166.105.97:5984/manager/_design/lists/_view/partners?include_docs=true', {
+            $http.get('http://'+DbManager+'/manager/_design/lists/_view/partners?include_docs=true', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -47,9 +47,8 @@ app.service('getpartnerService', function($http, $q) {
             return deferred.promise;
         },
         delPartners: function(id, rev) {
-            console.log("--" + id + "--" + rev);
             var deferred = $q.defer();
-            $http.put('http://188.166.105.97:5984/manager/' + id, {"_id": id, "_rev": rev, "_deleted": true}, {
+            $http.put('http://'+DbManager+'/manager/' + id, {"_id": id, "_rev": rev, "_deleted": true}, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

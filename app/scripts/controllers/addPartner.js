@@ -26,7 +26,7 @@ app.service('partnerService', function($http, $q) {
     return {
         getCategory: function() {
             var deferred = $q.defer();
-            $http.get('http://188.166.105.97:5984/manager/_design/lists/_view/categories?include_docs=true', {
+            $http.get('http://'+DbManager+'/manager/_design/lists/_view/categories?include_docs=true', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -42,7 +42,7 @@ app.service('partnerService', function($http, $q) {
             partner._id= "partner_"+Date.now();
             var deferred = $q.defer();
             
-            $http.put('http://188.166.105.97:5984/manager/partner_'+Date.now(),partner, {
+            $http.put('http://'+DbManager+'/manager/partner_'+Date.now(),partner, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
