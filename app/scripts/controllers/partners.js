@@ -7,7 +7,7 @@
  * Controller of the managerApp
  */
 var app = angular.module('managerApp');
-app.controller('PartnersCtrl', function($scope, getpartnerService) {
+app.controller('PartnersCtrl', function($scope, getpartnerService, CategoryService) {
     getpartnerService.getPartners().then(function(data) {
         $scope.partnerRows = data.rows;
     });
@@ -24,12 +24,24 @@ app.controller('PartnersCtrl', function($scope, getpartnerService) {
                 $scope.partnerRows = data.rows;
             });
         });
+    };
+
+  CategoryService.getCategory().then(function(data) {
+    $scope.catRows = data.rows;
+  });
+
+});
+
+app.filter('getCategoryName', function() {
+  return function(cats, id) {
+    for( var i = 0; cats && i < cats.length; i++ ) {
+      if( cats[i].id === id ) {
+        return cats[i].doc.label;
+      }
     }
-    $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
+
+    return '';
+  }
 });
 app.service('getpartnerService', function($http, $q) {
     return {

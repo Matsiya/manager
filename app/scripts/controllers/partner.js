@@ -19,12 +19,7 @@ app.controller('PartnerCtrl', function($scope, editPartnerService, $location, $r
         editPartnerService.updatePartner(val).then(function(data) {
             $location.path('/partners');
         });
-    }
-    $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
+    };
 });
 app.service('editPartnerService', function($http, $q) {
     return {

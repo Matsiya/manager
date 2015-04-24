@@ -52,11 +52,6 @@ app.controller('CategoriesCtrl', function($scope, CategoryService) {
         });
     }
 
-    $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
 });
 
 
